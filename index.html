@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Good Morning ❤️</title>
+<title>🌸 Good Morning Surprise 🌷</title>
 
 <style>
 *{
@@ -14,13 +13,13 @@
 }
 
 body{
-    font-family:Arial, sans-serif;
+    font-family:'Segoe UI',sans-serif;
     min-height:100vh;
     overflow-x:hidden;
     color:white;
-    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
+    background:linear-gradient(-45deg,#ffdde1,#ee9ca7,#d4fc79,#96e6a1);
     background-size:400% 400%;
-    animation:gradient 12s ease infinite;
+    animation:gradient 15s ease infinite;
 }
 
 @keyframes gradient{
@@ -29,15 +28,42 @@ body{
     100%{background-position:0% 50%;}
 }
 
+/* ---------- INTRO SCREEN ---------- */
+#intro{
+    position:fixed;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.25);
+    backdrop-filter:blur(10px);
+    z-index:999;
+    text-align:center;
+}
+
+#intro h1{
+    font-size:2.2rem;
+    margin-bottom:20px;
+}
+
+#intro button{
+    padding:14px 25px;
+    border:none;
+    border-radius:30px;
+    background:white;
+    color:#ff4f81;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ---------- MAIN ---------- */
 .container{
     max-width:900px;
     margin:auto;
     padding:30px 20px;
     text-align:center;
-}
-
-.hero{
-    padding-top:50px;
+    display:none;
 }
 
 .hero h1{
@@ -47,28 +73,29 @@ body{
 
 .hero p{
     font-size:1.2rem;
+    line-height:1.6;
 }
 
-.card{
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(10px);
-    padding:25px;
-    border-radius:20px;
-    margin-top:25px;
-}
-
-.clock{
-    font-size:1.5rem;
-    margin-top:10px;
-}
-
-.days{
+.clock,.days{
     margin-top:15px;
-    font-size:1.1rem;
+    font-size:1.2rem;
+    font-weight:bold;
 }
+
+/* ---------- CARDS ---------- */
+.card{
+    margin-top:25px;
+    padding:25px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.3);
+}
+
+/* ================= BUTTONS ================= */
 
 button{
-    padding:12px 20px;
+    padding:12px 22px;
     margin:10px;
     border:none;
     border-radius:30px;
@@ -76,216 +103,265 @@ button{
     color:#ff4f81;
     font-weight:bold;
     cursor:pointer;
-    transition:0.3s;
+    position:relative;
+    overflow:hidden;
+    transition:all 0.25s ease;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 
 button:hover{
-    transform:scale(1.05);
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:0 10px 25px rgba(255,105,135,0.35);
 }
 
-.message{
-    margin-top:20px;
-    min-height:60px;
-    font-size:1.1rem;
+button:active{
+    transform:translateY(2px) scale(0.96);
 }
 
-.memories{
+/* ripple */
+.ripple{
+    position:absolute;
+    border-radius:50%;
+    transform:scale(0);
+    animation:rippleEffect 600ms linear;
+    background:rgba(255,105,135,0.35);
+    pointer-events:none;
+}
+
+@keyframes rippleEffect{
+    to{
+        transform:scale(4);
+        opacity:0;
+    }
+}
+
+/* ---------- FLOWERS ---------- */
+.flower{
+    position:fixed;
+    bottom:-50px;
+    animation:float linear forwards;
+    pointer-events:none;
+}
+
+@keyframes float{
+    from{transform:translateY(0) rotate(0deg);}
+    to{transform:translateY(-110vh) rotate(360deg);}
+}
+
+/* ---------- FLOWER GRID ---------- */
+
+.flower-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
     gap:15px;
     margin-top:20px;
 }
 
-.memory{
+.flower-card{
     background:rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:20px;
     padding:20px;
-    border-radius:15px;
+    text-align:center;
+    transition:0.3s ease;
+    backdrop-filter:blur(10px);
+    cursor:pointer;
 }
 
-.memory h3{
+.flower-card:hover{
+    transform:translateY(-8px) scale(1.03);
+    box-shadow:0 12px 25px rgba(0,0,0,0.25);
+    background:rgba(255,255,255,0.22);
+}
+
+.flower-icon{
+    font-size:2rem;
     margin-bottom:10px;
+    animation:floatFlowerIcon 3s ease-in-out infinite;
 }
 
-.footer{
-    margin-top:40px;
-    padding-bottom:40px;
+@keyframes floatFlowerIcon{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-5px);}
 }
 
-.heart{
-    position:fixed;
-    bottom:-50px;
-    color:white;
-    animation:float linear forwards;
-    opacity:0.8;
+.flower-card h3{
+    margin-bottom:8px;
 }
 
-@keyframes float{
-    from{
-        transform:translateY(0);
-        opacity:1;
-    }
-    to{
-        transform:translateY(-110vh);
-        opacity:0;
-    }
+.flower-card p{
+    font-size:0.95rem;
+    opacity:0.9;
 }
+
 </style>
-
 </head>
+
 <body>
 
-<div class="container">
-
-```
-<div class="hero">
-    <h1>☀️ Good Morning, My Love ❤️</h1>
-
-    <p>
-        I hope your day starts with a smile,
-        because you make mine brighter every day.
-    </p>
-
-    <div class="clock" id="clock"></div>
-
-    <div class="days" id="daysCounter"></div>
+<!-- INTRO -->
+<div id="intro">
+    <h1>🌸 I made something special for you 🌷</h1>
+    <button onclick="openGift()">Open Your Surprise 💖</button>
 </div>
 
-<div class="card">
+<!-- MAIN -->
+<div class="container" id="main">
 
-    <h2>💌 A Little Message</h2>
+    <div class="hero">
+        <h1>🌸 Good Morning, Malik 🌷</h1>
 
-    <p style="margin-top:15px;">
-        No matter how busy life gets,
-        I always find myself thinking about you.
-        Thank you for being such a beautiful part of my life.
-    </p>
+        <p>
+            I hope your day starts with a smile,
+            because you make my world brighter every day.
+        </p>
 
-    <button onclick="showCompliment()">
-        Why You're Amazing ✨
-    </button>
+        <div class="clock" id="clock"></div>
+        <div class="days" id="daysCounter"></div>
 
-    <button onclick="showSurprise()">
-        Secret Surprise 🎁
-    </button>
-
-    <div class="message" id="message"></div>
-
-</div>
-
-<div class="card">
-
-    <h2>🌸 Some of My Favorite Things About You</h2>
-
-    <div class="memories">
-
-        <div class="memory">
-            <h3>😊 Your Smile</h3>
-            <p>It can instantly improve any day.</p>
-        </div>
-
-        <div class="memory">
-            <h3>💖 Your Kindness</h3>
-            <p>You care about people in a way that inspires me.</p>
-        </div>
-
-        <div class="memory">
-            <h3>✨ Your Presence</h3>
-            <p>Even ordinary moments feel special with you.</p>
-        </div>
-
+        <p style="margin-top:15px;">
+            🌷 Every flower reminds me of you 🌸
+        </p>
     </div>
 
-</div>
+    <!-- MESSAGE -->
+    <div class="card">
+        <h2>💌 A Little Message</h2>
 
-<div class="card">
+        <p style="margin-top:15px;">
+            No matter how busy life gets, you are always in my thoughts.
+        </p>
 
-    <h2>📖 Our Story</h2>
+        <button onclick="showCompliment()">Why You're Amazing ✨</button>
+        <button onclick="showSurprise()">Bloom a Flower 🌷</button>
 
-    <p style="margin-top:15px;">
-        Every day adds another page to our story.
-        Some days are simple, some unforgettable,
-        but all of them matter because they include you.
-    </p>
+        <div id="message" style="margin-top:15px;"></div>
+    </div>
 
-</div>
+    <!-- FLOWERS SECTION (BOUQUET REMOVED) -->
+    <div class="card">
+        <h2>🌷 Flowers That Remind Me of You</h2>
 
-<div class="footer">
-    ❤️ Made with love just for you ❤️
-</div>
-```
+        <div class="flower-grid">
+
+            <div class="flower-card">
+                <div class="flower-icon">🌹</div>
+                <h3>Rose</h3>
+                <p>Timeless beauty that never goes unnoticed.</p>
+            </div>
+
+            <div class="flower-card">
+                <div class="flower-icon">🌻</div>
+                <h3>Sunflower</h3>
+                <p>Always bright, always spreading warmth.</p>
+            </div>
+
+            <div class="flower-card">
+                <div class="flower-icon">🌸</div>
+                <h3>Cherry Blossom</h3>
+                <p>Soft, rare, and beautifully calming.</p>
+            </div>
+
+            <div class="flower-card">
+                <div class="flower-icon">🌺</div>
+                <h3>Hibiscus</h3>
+                <p>Bold, graceful, and full of life.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- STORY -->
+    <div class="card">
+        <h2>📖 Our Story</h2>
+        <p>Every day with you feels like a new blooming flower.</p>
+    </div>
 
 </div>
 
 <script>
 
-function updateClock(){
-    const now = new Date();
-
-    document.getElementById("clock").innerHTML =
-        now.toLocaleTimeString();
+// intro
+function openGift(){
+    document.getElementById("intro").style.display="none";
+    document.getElementById("main").style.display="block";
+    start();
 }
 
-setInterval(updateClock,1000);
-updateClock();
+// clock
+function updateClock(){
+    document.getElementById("clock").innerHTML =
+    "" + new Date().toLocaleTimeString();
+}
 
-const compliments = [
-    "Your smile is one of my favorite things in the world ❤️",
-    "You make ordinary days feel special ✨",
-    "You inspire me to become a better person 🌸",
-    "Talking to you is the best part of many days 💖",
-    "You bring warmth wherever you go ☀️",
-    "You are stronger than you realize 🌷",
-    "Life feels brighter with you in it ❤️"
+// days counter
+function updateDays(){
+    const startDate = new Date("2025-12-05");
+    let diff = Math.floor((new Date()-startDate)/(1000*60*60*24));
+    if(diff < 0) diff = 0;
+
+    document.getElementById("daysCounter").innerHTML =
+    "🌹 Memories: " + diff + " days";
+}
+
+// messages
+const msgs=[
+    "🌸 You are my favorite kind of beautiful.",
+    "🌷 You make everything softer.",
+    "🌻 You are my peace.",
+    "💐 You are my happiness."
 ];
 
 function showCompliment(){
-
-    const random =
-    compliments[Math.floor(Math.random()*compliments.length)];
-
     document.getElementById("message").innerHTML =
-    random;
+    msgs[Math.floor(Math.random()*msgs.length)];
 }
 
 function showSurprise(){
-
     document.getElementById("message").innerHTML =
-    "🎁 Surprise! If I could choose again, I would still choose you. Every single time. ❤️";
+    "🌷 Just like flowers bloom, my feelings for you grow every day.";
 }
 
-const firstDate = new Date("2024-01-01");
-const today = new Date();
+// flowers animation
+function createFlower(){
+    const f=document.createElement("div");
+    f.classList.add("flower");
 
-const difference =
-Math.floor((today-firstDate)/(1000*60*60*24));
+    const arr=["🌸","🌷","🌹","🌺","🌻","💐"];
+    f.innerHTML = arr[Math.floor(Math.random()*arr.length)];
 
-document.getElementById("daysCounter").innerHTML =
-"🌹 We've been making memories for " + difference + " days";
+    f.style.left=Math.random()*100+"vw";
+    f.style.fontSize=(18+Math.random()*25)+"px";
+    f.style.animationDuration=(5+Math.random()*6)+"s";
 
-function createHeart(){
-
-    const heart = document.createElement("div");
-
-    heart.classList.add("heart");
-
-    heart.innerHTML = "❤️";
-
-    heart.style.left = Math.random()*100 + "vw";
-
-    heart.style.fontSize =
-    (15 + Math.random()*25) + "px";
-
-    heart.style.animationDuration =
-    (4 + Math.random()*6) + "s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },10000);
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),11000);
 }
 
-setInterval(createHeart,500);
+// ripple effect
+document.addEventListener("click",(e)=>{
+    if(e.target.tagName!=="BUTTON") return;
+
+    const ripple=document.createElement("span");
+    ripple.classList.add("ripple");
+
+    const rect=e.target.getBoundingClientRect();
+    ripple.style.left=(e.clientX-rect.left)+"px";
+    ripple.style.top=(e.clientY-rect.top)+"px";
+
+    e.target.appendChild(ripple);
+
+    setTimeout(()=>ripple.remove(),600);
+});
+
+// start
+function start(){
+    updateClock();
+    updateDays();
+    setInterval(updateClock,1000);
+    setInterval(updateDays,60000);
+    setInterval(createFlower,500);
+}
 
 </script>
 
