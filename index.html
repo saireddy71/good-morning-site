@@ -135,19 +135,6 @@ button:active{
     }
 }
 
-/* ---------- FLOWERS ---------- */
-.flower{
-    position:fixed;
-    bottom:-50px;
-    animation:float linear forwards;
-    pointer-events:none;
-}
-
-@keyframes float{
-    from{transform:translateY(0) rotate(0deg);}
-    to{transform:translateY(-110vh) rotate(360deg);}
-}
-
 /* ---------- FLOWER GRID ---------- */
 
 .flower-grid{
@@ -322,22 +309,6 @@ function showSurprise(){
     "🌷 Just like flowers bloom, my feelings for you grow every day.";
 }
 
-// flowers animation
-function createFlower(){
-    const f=document.createElement("div");
-    f.classList.add("flower");
-
-    const arr=["🌸","🌷","🌹","🌺","🌻","💐"];
-    f.innerHTML = arr[Math.floor(Math.random()*arr.length)];
-
-    f.style.left=Math.random()*100+"vw";
-    f.style.fontSize=(18+Math.random()*25)+"px";
-    f.style.animationDuration=(5+Math.random()*6)+"s";
-
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),11000);
-}
-
 // ripple effect
 document.addEventListener("click",(e)=>{
     if(e.target.tagName!=="BUTTON") return;
@@ -360,7 +331,6 @@ function start(){
     updateDays();
     setInterval(updateClock,1000);
     setInterval(updateDays,60000);
-    setInterval(createFlower,500);
 }
 
 </script>
